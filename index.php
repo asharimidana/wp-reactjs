@@ -59,3 +59,5 @@ function harga_2()
 // END product submenu ===========================================
 //==============================================Backend===============================
 require_once plugin_dir_path(__FILE__) . 'backend/controllers/session_controllers.php';
+require_once plugin_dir_path(__FILE__) . 'backend/controllers/wp_custom_register.php';
+/* require_once(plugin_dir_path(__FILE__) . '/vendor/autoload.php'); */
