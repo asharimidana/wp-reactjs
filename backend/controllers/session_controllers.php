@@ -6,7 +6,7 @@ add_action('rest_api_init', 'login');
 function login()
 {
 	register_rest_route(
-		'login/api/v1',
+		'api/v1',
 		'/data',
 		array(
 			'methods' => 'GET',
