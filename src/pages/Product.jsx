@@ -1,46 +1,26 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import AddProduct from "./AddProduct";
 
-const Dashboard = () => {
+const Product = () => {
 	const [id, setId] = useState("");
 	const [datax, setData] = useState([]);
-	const [showModal, setShowModal] = useState(false);
-	const [add, setAdd] = useState(false);
+	useEffect(() => {}, []);
 
-	// togle modal
-	const fromChild = (data) => {
-		setAdd(data);
-	};
-
-	// GET /users
 	const getData = async (e) => {
 		try {
 			e.preventDefault();
 			const response = await axios.get("https://jsonplaceholder.org/users");
 			setData(response.data);
-			console.log(response.data);
 			return response.data;
 		} catch (err) {}
 	};
-
 	return (
-		<div className="dashboard  bg-yellow-300">
-			{add ? <AddProduct setter={add} fromChild={fromChild} /> : null}
+		<div className="dashboard  bg-red-300">
 			<div className="border pl-1 py-1">
-				<h3 className="text-white">Dashboard</h3>
+				<h3 className="text-white">Product Page</h3>
 				<p>
 					dit Dashboard component at <code>src/components/Dashboard.jsx</code>
 				</p>
-
-				<button
-					type="button"
-					className="bg-violet-500 hover:bg-violet-700 mr-2 py-1 px-2 rounded text-white"
-					onClick={() => setAdd(!add)}
-				>
-					Add
-				</button>
-
 				<button
 					type="button"
 					className="bg-violet-500 hover:bg-violet-700 mr-2 py-1 px-2 rounded text-white"
@@ -66,4 +46,4 @@ const Dashboard = () => {
 	);
 };
 
-export default Dashboard;
+export default Product;

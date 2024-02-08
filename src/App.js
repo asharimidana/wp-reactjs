@@ -1,22 +1,14 @@
 import React from "react";
+import Product from "./pages/Product";
 import Dashboard from "./components/Dashboard";
-import { useLocation, BrowserRouter, Routes, Route } from "react-router-dom";
 const App = () => {
 	const urlParams = new URLSearchParams(window.location.search);
-	console.log(urlParams.get("page"));
-	if (urlParams.get("page") == "jobplace") {
-		console.log(true);
-		return <div>hello</div>;
+	if (urlParams.get("page") == "dashboard") {
+		return <Dashboard />;
 	}
-	return (
-		<div className="container">
-			<BrowserRouter>
-				<Routes>
-					<Route path="/wp-admin/admin.php" element={<Dashboard />} />
-				</Routes>
-			</BrowserRouter>
-		</div>
-	);
+	if (urlParams.get("page") == "product2") {
+		return <Product />;
+	}
 };
 
 export default App;
