@@ -1,4 +1,9 @@
 <?php
+
+require_once plugin_dir_path(__FILE__) . '../../vendor/autoload.php';
+
+use App\Models\Product;
+
 // POST /wp/v1/register 
 add_action('rest_api_init', 'wp_rest_user_endpoints');
 function wp_rest_user_endpoints()
@@ -9,12 +14,6 @@ function wp_rest_user_endpoints()
 	));
 }
 
-/**
- * Register a new user
- *
- * @param  WP_REST_Request $request Full details about the request.
- * @return array $args.
- **/
 function wc_rest_user_endpoint_handler($request = null)
 {
 	$response = array();
@@ -49,7 +48,7 @@ function wc_rest_user_endpoint_handler($request = null)
 				$user->set_role('customer');
 			}
 			$response['code'] = 200;
-			$response['message'] = sprintf(__("User '%s' Registration was Successful", 'wp-rest-user'), $username);
+			$response['message'] = sprintf(__("User '%s' Registration was Successful, please check email verification", 'wp-rest-user'), $username);
 		} else {
 			return $user_id;
 		}
@@ -80,9 +79,22 @@ function gycs_login($request)
 	$creds['user_password'] = sanitize_text_field($request["password"]);
 	$creds['remember'] = true;
 	$user = wp_signon($creds, false);
+	$status = get_user_meta($user->ID, "status");
+	$roles = $user->roles[0];
+	/* if ($roles != ) {
+		# code...
+	} */
 	if (is_wp_error($user)) {
-		return new WP_Error('authentication_failed', $user->get_error_message(), array('status' => 403,));
+		return new WP_Error("forbidden", $user->get_error_message(), array('status' => 403,));
 	}
+	if ($status[0] == "false" && $roles != 'administrator') {
+		return "verifikasi dulu";
+	}
+
+
+
+	Product::get_product();
+
 	setcookie('contoh', 'xxx', time() + (365 * 24 * 60 * 60), '/', '', false, true);
-	return "ok";
+	return $roles;
 }

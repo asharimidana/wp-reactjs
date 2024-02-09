@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Plugin Name:      Jcomerce 
- * Description:       A Job posting platform made by WordPress.
+ * Plugin Name:      Ascomerce 
+ * Description:       Wordpress ecomerce .
  * Requires at least: 5.8
  * Requires PHP:      7.0
  * Version:           0.1.0
@@ -58,6 +58,9 @@ function harga_2()
 }
 // END product submenu ===========================================
 //==============================================Backend===============================
-require_once plugin_dir_path(__FILE__) . 'backend/controllers/session_controllers.php';
-require_once plugin_dir_path(__FILE__) . 'backend/controllers/wp_custom_register.php';
-/* require_once(plugin_dir_path(__FILE__) . '/vendor/autoload.php'); */
+/* echo "oookkkkkk"; */
+
+
+
+require_once plugin_dir_path(__FILE__) . 'backend/Controllers/session_controllers.php';
+require_once plugin_dir_path(__FILE__) . 'backend/Controllers/wp_custom_register.php';
