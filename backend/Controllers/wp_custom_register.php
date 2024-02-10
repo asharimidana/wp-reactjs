@@ -3,6 +3,7 @@
 require_once plugin_dir_path(__FILE__) . '../../vendor/autoload.php';
 
 use App\Models\Product;
+use App\Models\Book;
 
 // POST /wp/v1/register 
 add_action('rest_api_init', 'wp_rest_user_endpoints');
@@ -93,7 +94,9 @@ function gycs_login($request)
 
 
 
-	Product::get_product();
+	/* Product::get_product(); */
+	Product::insert(['name' => 'bukud ashari']);
+	Book::insert(['name' => 'bukud ashari']);
 
 	setcookie('contoh', 'xxx', time() + (365 * 24 * 60 * 60), '/', '', false, true);
 	return $roles;
